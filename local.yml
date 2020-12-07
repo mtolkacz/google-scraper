@@ -1,0 +1,39 @@
+version: '3.7'
+
+services:
+  web:
+    container_name: web
+    build: 
+      context: ./app
+      dockerfile: Dockerfile.local
+    command: python manage.py runserver 0.0.0.0:8000 --settings=config.settings.local
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./app/:/usr/src/app/
+    ports:
+      - 8000:8000
+    env_file: ./env/dev/.env
+    depends_on:
+      - db
+    networks:
+      MT:
+        ipv4_address: 10.6.0.5
+  db:
+    container_name: db
+    image: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    env_file: ./env/dev/.env
+    networks:
+      MT:
+        ipv4_address: 10.6.0.6
+volumes:
+  postgres_data:
+  pgadmin:
+networks:
+  MT:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 10.6.0.0/16

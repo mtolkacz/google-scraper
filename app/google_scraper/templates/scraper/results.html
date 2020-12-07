@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+<h2>Google scraper - results </h2>
+<a href="{% url 'scraper:index' %}">Back to main page</a><br><br>
+
+{{ results }}
+
+{% endblock %}
