@@ -27,8 +27,7 @@ def get_env_variable(var_name):
 
 SECRET_KEY = get_env_variable('SECRET_KEY')
 
-ALLOWED_HOSTS = ['google-scraper.herokuapp.com']
-
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'mt-google-scraper.herokuapp.com']
 
 # Application definition
 INSTALLED_APPS = [

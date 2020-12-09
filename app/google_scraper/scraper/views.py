@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.generic import View
+
 from .forms import QueryForm
 from .mixins import ResultsMixin
 
@@ -24,7 +25,7 @@ class ScraperView(View):
         form = self.form_class(request.POST)
         if form.is_valid():
             query = form.cleaned_data.get('query')
-            request.session['result'] = query
+            request.session['query'] = query
             return redirect(reverse('scraper:results'))
 
         return render(request, self.template_name, {'form': form})
@@ -38,8 +39,7 @@ class ResultsView(ResultsMixin, View):
     template_name = 'scraper/results.html'
 
     def get(self, request, *args, **kwargs):
+        results = self.get_results(request)
 
-        result = self.get_result(request)
-
-        return render(request, self.template_name, {'results': result}) if result else redirect('scraper:index')
+        return render(request, self.template_name, results) if results else redirect('scraper:index')
 
