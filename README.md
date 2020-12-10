@@ -1,6 +1,14 @@
 # Google scraper
 Downloading list of search result (SERP) from Google, based on the query passed to the form
 
+## Technologies
+* Python 3.9<br>
+* Django 3.1.3<br>
+* Django Rest Framework 3.12.2<br>
+* PostgreSQL 13.0<br>
+* Docker 19.03.8<br>
+* docker-compose 1.27.4<br>
+
 ## Requirements
 1. Get links to websites with position information
 * Number of links to configure in the GoogleScraper class constructor
@@ -40,13 +48,6 @@ Downloading list of search result (SERP) from Google, based on the query passed 
 * lang (<i>hl</i>) - interface language
 * country (<i>countryXX</i>) - search results location limitation
 
-## Technologies
-* Python 3.9<br>
-* Django 3.1.3<br>
-* Django Rest Framework 3.12.2<br>
-* PostgreSQL 13.0<br>
-* Docker 19.03.8<br>
-* docker-compose 1.27.4<br>
 ## Example env file
 * Create .env file in docker-compose root directory /env/dev/.env or /env/prod/.env 
 > SECRET_KEY={your_secret_key}
